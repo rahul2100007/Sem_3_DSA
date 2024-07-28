@@ -3,7 +3,6 @@
 int main()
 {
     float salary, GS, FS;
-    printf("Enter your salary: ");
     printf("Enter the salary of the employee: ");
     scanf("%f", &salary);
     GS = (salary / 100) * 60;
