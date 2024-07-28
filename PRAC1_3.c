@@ -1,5 +1,6 @@
 #include <stdio.h>
-int main(){
+int main()
+{
     float marks[5];
     printf("enter PHYSICS MARKS:");
     scanf("%f", &marks[0]);
