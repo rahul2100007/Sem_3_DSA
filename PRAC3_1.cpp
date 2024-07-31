@@ -28,27 +28,50 @@ void display(vector<int> &vec)
     }
     cout << "]" << endl;
 }
+int attempt_push(){
+    int x;
+    cout<<"How many ball you want to throw at this time:";
+    cin>>x;
+    if(x>9){
+        cout<<"you can't throw more then 9 ball because it has no space greter then '9' "<<endl;
+    }
+    else{
+        for(int i=0;i<x;i++)
+        {
+            ball_push();
+        }
+    }
+}
+int attempt_pop(){
+    int x;
+    cout<<"How many ball you want to pop at this time:";
+    cin>>x;
+    for(int j=0;j<x;j++){
+        pop_ball();
+    }
+}
 int main()
 {
     int choice;
-    
-    for (int k = 0; k < 9; k++)
-    {
-            cout << "1.push\n2.pop\n0.to end game and display score\n";
-            cin >> choice;
-            switch (choice)
-            {
-            case 1:
-                ball_push();
-                break;
-            case 2:
-                pop_ball();
-                break;
-            }
-            if(choice==0){
-                display(i_ball);
-                cout << "\nexiting...";
-                k=9;
-            }
-    }
-}
+    cout << "Welcome to the ball game" << endl;
+    game:
+        do{
+                cout << "<1> push\n<2> pop\n<9> Restart Game\n<0>To end game and display score\n";
+                cin >> choice;
+                switch (choice)
+                {
+                case 1:
+                    attempt_push();
+                    break;
+                case 2:
+                    attempt_pop();
+                    break;
+                case 9:
+                    i_ball.clear();
+                    goto game;
+                case 0:
+                    display(i_ball);
+                    cout << "\nexiting...";
+                }
+        }while(choice!=0 || i_ball.size()>9);
+}   
