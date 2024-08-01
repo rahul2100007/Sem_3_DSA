@@ -8,11 +8,7 @@ int ball_push(int a) {
     int ball;
     while (1) {
         printf("Enter ball number: ");
-        if (scanf("%d", &ball) != 1) {
-            printf("Invalid input. Please enter a number.\n");
-            while (getchar() != '\n');
-            continue;
-        }
+        scanf("%d", &ball);
         int exists = 0;
         for (int k = 0; k < size_basket; k++) {
             if (ball == i_ball[k]) {
@@ -22,7 +18,7 @@ int ball_push(int a) {
             }
         }
         if (!exists) {
-            i_ball[a] = ball;
+            i_ball[size_basket] = ball;
             size_basket++;
             break;
         }
@@ -33,7 +29,7 @@ int ball_push(int a) {
 int pop_ball() {
     if (size_basket > 0) {
         size_basket--;
-        printf("Ball popped\n");
+        
     } else {
         printf("No balls to pop\n");
     }
@@ -41,22 +37,23 @@ int pop_ball() {
 }
 
 void display() {
+    if(size_basket!=0){
     printf("Total balls in your basket: [ ");
     for (int i = 0; i < size_basket; i++) {
         printf("%d ", i_ball[i]);
     }
     printf("]\n");
     printf("Total %d balls in basket :)\n", size_basket);
+    }
+    else if(size_basket==0){
+        printf("No balls in basket:(\n");
+    }
 }
 
 int attempt_push() {
     int x;
     printf("How many balls do you want to throw at this time: ");
-    if (scanf("%d", &x) != 1) {
-        printf("Invalid input. Please enter a number.\n");
-        while (getchar() != '\n'); // Clear the input buffer
-        return -1;
-    }
+    scanf("%d", &x);
     if (x > 9 || size_basket + x > 9) {
         printf("You can't throw more than 9 balls because it has no space greater than '9'\n");
     } else {
@@ -70,14 +67,11 @@ int attempt_push() {
 int attempt_pop() {
     int x;
     printf("How many balls do you want to pop at this time: ");
-    if (scanf("%d", &x) != 1) {
-        printf("Invalid input. Please enter a number.\n");
-        while (getchar() != '\n'); // Clear the input buffer
-        return -1;
-    }
+    scanf("%d", &x);
     if (x > size_basket) {
         printf("You can't pop more balls than you have\n");
     } else {
+        printf("Ball popped\n");
         for (int i = 0; i < x; i++) {
             pop_ball();
         }
@@ -88,13 +82,9 @@ int attempt_pop() {
 int main() {
     int choice;
     printf("Welcome to the ball game\n");
-    while (1) {
-        printf("<1> Push\n<2> Pop\n<3> Display Score\n<9> Restart Game\n<0> To exit game\nENTER CHOICE: ");
-        if (scanf("%d", &choice) != 1) {
-            printf("Invalid input. Please enter a number.\n");
-            while (getchar() != '\n'); // Clear the input buffer
-            continue;
-        }
+    do{
+    printf("<1> Push\n<2> Pop\n<3> Display Score\n<9> Restart Game\n<0> To exit game\nENTER CHOICE: ");
+    scanf("%d", &choice);
         switch (choice) {
             case 1:
                 attempt_push();
@@ -115,6 +105,7 @@ int main() {
             default:
                 printf("Invalid choice. Please choose again.\n");
         }
-    }
+    }while(choice!=0);
     return 0;
 }
+    
