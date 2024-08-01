@@ -1,7 +1,7 @@
 #include <stdio.h>
 int main()
 {
-    int rows = 5;
+    int rows = 15;
 
     for (int i = 0; i < rows; i++)
     {
@@ -19,7 +19,7 @@ int main()
         printf("\n");
     }
 
-    int n = 5;
+    int n = 7;
 
     for (int i = 0; i < 2 * n - 1; i++)
     {
