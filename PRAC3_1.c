@@ -80,7 +80,6 @@ int attempt_push()
     }
     return 0;
 }
-
 int attempt_pop()
 {
     int x;
@@ -100,7 +99,6 @@ int attempt_pop()
     }
     return size_basket;
 }
-
 int main()
 {
     int choice;
