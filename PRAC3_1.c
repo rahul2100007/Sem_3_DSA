@@ -101,6 +101,13 @@ int attempt_pop()
 }
 int main()
 {
+    printf("____    __    ____  _______  __        ______   ______   .___  ___.  _______ \n");
+    printf("\\   \\  /  \\  /   / |   ____||  |      /      | /  __  \\  |   \\/   | |   ____|\n");
+    printf(" \\   \\/    \\/   /  |  |__   |  |     |  ,----'|  |  |  | |  \\  /  | |  |__   \n");
+    printf("  \\            /   |   __|  |  |     |  |     |  |  |  | |  |\\/|  | |   __|  \n");
+    printf("   \\    /\\    /    |  |____ |  `----.|  `----.|  `--'  | |  |  |  | |  |____ \n");
+    printf("    \\__/  \\__/     |_______||_______| \\______| \\______/  |__|  |__| |_______|\n");
+    printf("                                                                             \n");
     int choice;
     printf("Welcome to the ball game\n");
     do
@@ -126,7 +133,7 @@ int main()
             printf("Exiting...\n");
             exit(0);
         default:
-            printf("Invalid choice. Please choose again.\n");
+            printf("Invalid choice.\n");
         }
     } while (choice != 0);
     return 0;
