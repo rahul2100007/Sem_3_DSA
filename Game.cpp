@@ -5,23 +5,23 @@ vector<int> i_ball;
 int ball_push()
 {
     int ball;
-        throw_ball:
-            cout << "enter ball number:";
-            cin >> ball;
-            for (int k = 0; k < i_ball.size(); k++)
-            {
-                if (ball == i_ball[k])
-                {
-                    cout << "ball already exist" << endl;
-                    goto throw_ball;
-                }
-            }
+throw_ball:
+    cout << "enter ball number:";
+    cin >> ball;
+    for (int k = 0; k < i_ball.size(); k++)
+    {
+        if (ball == i_ball[k])
+        {
+            cout << "ball already exist" << endl;
+            goto throw_ball;
+        }
+    }
     i_ball.push_back(ball);
 };
 int pop_ball()
 {
     if (i_ball.size() > 0)
-    {  
+    {
         i_ball.pop_back();
     }
 };
