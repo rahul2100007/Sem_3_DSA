@@ -1,79 +1,140 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
-char infix_eq[100];
-char postfix_eq[100];
-char stack[100];
+#define max_size 100
+
+char stack[max_size];
 int top = -1;
+bool satckOflow = false;
 
-int precedence(char op) {
-    if (op == '+' || op == '-') return 1;
-    if (op == '*' || op == '/') return 2;
-    return 0;
+void pushStack(char data);
+char popStack(void);
+char stackTop(void);
+bool emptyStack(void);
+int precedence(char ch);
+bool isOperator(char ch);
+
+void pushStack(char data)
+{
+    if (top < max_size - 1)
+    {
+        stack[++top] = data;
+    }
+    else
+    {
+        satckOflow = true;
+    }
 }
 
-void push(char ch) {
-    stack[++top] = ch;
-}
-
-char pop() {
-    if (top == -1) return -1;
+char popStack(void)
+{
+    if (emptyStack())
+    {
+        return '\0';
+    }
     return stack[top--];
 }
 
-char peek() {
-    if (top == -1) return -1;
+char stackTop(void)
+{
+    if (emptyStack())
+    {
+        return '\0';
+    }
     return stack[top];
 }
 
-int size_of(char xyz[]) {
-    int y = 0;
-    int cnt = 0;
-    while (xyz[y] != '\0') {
-        cnt++;
-        y++;
-    }
-    return cnt;
+bool emptyStack(void)
+{
+    return top == -1;
 }
 
-void infix_to_postfix() {
-    printf("ENTER EXPRESSION: ");
-    int l = 0;
-    char ch;
-    while ((ch = getchar()) != ';') {
-        infix_eq[l++] = ch;
+int precedence(char ch)
+{
+    if (ch == '^')
+    {
+        return 3;
     }
-    infix_eq[l] = '\0';
+    if (ch == '*' || ch == '/')
+    {
+        return 2;
+    }
+    if (ch == '+' || ch == '-')
+    {
+        return 1;
+    }
+    return 0;
+}
+bool isOperand(char ch)
+{
+    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9');
+} 
+bool isOperator(char ch)
+{
+    return ch == '^' || ch == '*' || ch == '/' || ch == '+' || ch == '-';
+}
 
-    int k = 0;
-    for (int i = 0; i < strlen(infix_eq); i++) {
-        if ((infix_eq[i] >= 'a' && infix_eq[i] <= 'z') || (infix_eq[i] >= 'A' && infix_eq[i] <= 'Z')) {
-            postfix_eq[k++] = infix_eq[i];
-        } else if (infix_eq[i] == '(') {
-            push(infix_eq[i]);
-        } else if (infix_eq[i] == ')') {
-            while (peek() != '(') {
-                postfix_eq[k++] = pop();
+int main(void)
+{
+    char postfix[100] = "";
+    char temp[2] = "";
+    char ch;
+
+    printf("Enter an infix formula: ");
+    while ((ch = getchar()) != '\n')
+    {
+        if (ch == '(')
+        {
+            pushStack(ch);
+        }
+        else if (ch == ')')
+        {
+            char data = popStack();
+            while (data != '(')
+            {
+                temp[0] = data;
+                temp[1] = '\0';
+                strcat(postfix, temp);
+                data = popStack();
             }
-            pop();
-        } else {
-            while (top != -1 && precedence(peek()) >= precedence(infix_eq[i])) {
-                postfix_eq[k++] = pop();
+        }
+        else if (isOperator(ch))
+        {
+            while (!emptyStack() && precedence(ch) <= precedence(stackTop()))
+            {
+                char data = popStack();
+                temp[0] = data;
+                temp[1] = '\0';
+                strcat(postfix, temp);
             }
-            push(infix_eq[i]);
+            pushStack(ch);
+        }
+        else if (isOperand(ch))
+        {
+            temp[0] = ch;
+            temp[1] = '\0';
+            strcat(postfix, temp);
         }
     }
 
-    while (top != -1) {
-        postfix_eq[k++] = pop();
+    while (!emptyStack())
+    {
+        char data = popStack();
+        temp[0] = data;
+        temp[1] = '\0';
+        strcat(postfix, temp);
     }
 
-    postfix_eq[k] = '\0';
-}
+    if (satckOflow)
+    {
+        printf("Error: Stack overflow\n");
+    }
+    else
+    {
+        printf("The postfix formula is: %s\n", postfix);
+    }
 
-int main() {
-    infix_to_postfix();
-    printf("Postfix Expression: %s\n", postfix_eq);
     return 0;
 }
