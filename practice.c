@@ -94,7 +94,7 @@ int main(void) {
 
     printf("Enter an infix formula: ");
     fgets(infix, max_size, stdin);
-    infix[strcspn(infix, "\n")] = '\0'; // Remove newline character
+    infix[strcspn(infix, "\n")] = '\0';
 
     reverseString(infix);
     replaceParentheses(infix);
