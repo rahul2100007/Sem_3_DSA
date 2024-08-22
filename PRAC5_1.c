@@ -41,7 +41,7 @@ void pop_redo(char* text) {
 }
 
 void textEditor() {
-    char text[max_length] = "";  // Initial text is empty
+    char text[max_length];
 
     while (1) {
         printf("Text: %s\n", text);
@@ -62,7 +62,7 @@ void textEditor() {
                 scanf(" %[^\n]s", newText);
                 push_undo(text);
                 strcat(text, newText);
-                redoTop = -1;  // Clear the redo stack
+                redoTop = -1;
                 break;
             }
             case 2: {
