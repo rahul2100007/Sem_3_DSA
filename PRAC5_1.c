@@ -44,7 +44,7 @@ void textEditor() {
     char text[max_length];
 
     while (1) {
-        printf("Text: %s\n", text);
+        printf("Text:%s\n",text);
         printf("Options:\n");
         printf("1. Append text\n");
         printf("2. Undo\n");
