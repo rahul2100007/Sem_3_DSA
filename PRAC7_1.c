@@ -62,7 +62,7 @@ void tower_of_hanoi(int n, char source, char auxiliary, char destination) {
 
 int main() {
     int n = 3; // Number of disks
-    tower_of_hanoi(n, 'A', 'B', 'C'); // A, B and C are names of rods
+    tower_of_hanoi(n, 'S', 'A', 'D'); // A, B and C are names of rods
     return 0;
 }
 
