@@ -32,10 +32,12 @@ struct node* insertvalue(struct node *first, int data) {
 }
 
 void print(struct node *ptr) {
+    printf("NULL -> ");
     while (ptr != NULL) {
-        printf("%d\n", ptr->data);
+        printf("%d -> ", ptr->data);
         ptr = ptr->next;
     }
+    printf("NULL");
 }
 
 int main() {
