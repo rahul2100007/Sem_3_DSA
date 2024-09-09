@@ -63,6 +63,7 @@ int main()
     printf("TRAVERSAL IN POST-ORDER:\n");
     traverse_postOrder(n1);
     printf("\n");
+    
     printf("TRAVERSAL IN IN-ORDER:\n");
     traverse_inOrder(n1);
     printf("\n");
