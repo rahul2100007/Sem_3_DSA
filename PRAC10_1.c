@@ -25,6 +25,12 @@ int main()
     enqueue(2);
     enqueue(5);
     enqueue(-1);
+    enqueue(6);
+    enqueue(9);
+    enqueue(7);
+     enqueue(45);
+    enqueue(69);
+    enqueue(14);
     display(queue);
     dequeue();
     display(queue);
