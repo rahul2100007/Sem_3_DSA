@@ -20,7 +20,7 @@ struct node* insertvalue(struct node *first, int data) {
         first = ptr;
     } else {
         struct node *temp = first;
-        while (temp->next != NULL) {
+            while (temp->next != NULL) {
             temp = temp->next;
         }
         temp->next = ptr;
