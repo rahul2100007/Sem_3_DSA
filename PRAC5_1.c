@@ -41,10 +41,10 @@ void pop_redo(char* text) {
 }
 
 void textEditor() {
-    char text[max_length];
+    char text[max_length] = "";
 
     while (1) {
-        printf("Text:%s\n",text);
+        printf("Text: %s\n", text);
         printf("Options:\n");
         printf("1. Append text\n");
         printf("2. Undo\n");
@@ -60,15 +60,21 @@ void textEditor() {
                 char newText[max_length];
                 printf("Enter text to append: ");
                 scanf(" %[^\n]s", newText);
-                push_undo(text);
-                strcat(text, newText);
-                redoTop = -1;
+                if (strlen(text) + strlen(newText) < max_length) {
+                    push_undo(text);
+                    strcat(text, newText);
+                    redoTop = -1;
+                } else {
+                    printf("Error: Text exceeds maximum length.\n");
+                }
                 break;
             }
             case 2: {
                 if (undoTop >= 0) {
                     push_redo(text);
                     pop_undo(text);
+                } else {
+                    printf("Nothing to undo.\n");
                 }
                 break;
             }
@@ -76,6 +82,8 @@ void textEditor() {
                 if (redoTop >= 0) {
                     push_undo(text);
                     pop_redo(text);
+                } else {
+                    printf("Nothing to redo.\n");
                 }
                 break;
             }
