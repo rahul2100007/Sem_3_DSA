@@ -47,16 +47,12 @@ int main()
 	struct node* n1=create_trees(1);
 	struct node* n2=create_trees(2);
 	struct node* n3=create_trees(3);
-    struct node* n4=create_trees(4);
-    struct node* n5=create_trees(5);
-    struct node* n6=create_trees('\0');
-    struct node* n7=create_trees('\0');
+    struct node* n4=create_trees('\0');
+    struct node* n5=create_trees('\0');
 	n1->left=n2;
 	n1->right=n3;
     n2->left=n4;
     n2->right=n5;
-    n3->left=n6;
-    n3->right=n7;
     printf("TRAVERSAL IN PRE-ORDER:\n");
     traverse_preOrder(n1);
     printf("\n");
