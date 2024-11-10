@@ -102,14 +102,10 @@ int main()
     struct Node *head = NULL;
     struct Node *tail = NULL;
     int value;
-    printf("Enter the values for the linked list (enter -1 to stop): ");
-    while (1)
+    printf("Enter the element of matrix: ");
+    for(int i=0;i<m*n;i++)
     {
         scanf("%d", &value);
-        if (value == -1)
-        {
-            break;
-        }
         struct Node *newNode = createNode(value);
         if (head == NULL)
         {
